@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TodoTable from "./TodoTable";
+import "./index.css";
 
 function TodoList() {
 
@@ -23,16 +24,25 @@ function TodoList() {
 
     };
 
+    const deleteTodo = (index) => {
+        const updatedTodos = [...todos];
+        updatedTodos.splice(index, 1);
+        setTodos(updatedTodos);
+      }
+
     return (
-    <>
+    <div>
         <h2>Simple To Do List</h2>
+        <div className="container2">
         <span>Description: </span>
         <input type="text" onChange={handleDescChange} value={desc} />
         <span>Date: </span>
         <input type="desc" onChange={handleDateChange} value={date} />
         <button onClick={addTodo}>Add</button>
-        <TodoTable todos={todos} />
-    </>
+        
+    </div>
+    <TodoTable todos={todos} deleteTodo={deleteTodo} />
+    </div>
       );
     }
 
